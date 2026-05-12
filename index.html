@@ -1,76 +1,155 @@
+# Premium Wedding Invitation Website (Forest Fantasy Sunda 3D)
+
+Simpan sebagai `index.html`
+
+```html
 <!DOCTYPE html>
-<h3>Akad Nikah</h3>
-<p>
-Sabtu, 30 Mei 2026<br>
-08.00 WIB<br>
-Gedung Serbaguna Sunda
-</p>
-</div>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eep Rifaldy & Melly Wedding</title>
 
-<div class="event">
-<h3>Resepsi</h3>
-<p>
-Sabtu, 30 Mei 2026<br>
-11.00 WIB - Selesai<br>
-Gedung Serbaguna Sunda
-</p>
-</div>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
 
-</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 
-<iframe src="https://maps.google.com/maps?q=bandung&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
+<style>
 
-</div>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+font-family:'Poppins',sans-serif;
+background:#08110c;
+overflow-x:hidden;
+color:white;
+}
+
+.bg{
+position:fixed;inset:0;
+background:linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.78)),url('https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=1920');
+background-size:cover;background-position:center;
+z-index:-5;
+animation:zoomBg 30s ease-in-out infinite alternate;
+}
+@keyframes zoomBg{from{transform:scale(1);}to{transform:scale(1.12);}}
+
+.fog{
+position:fixed;width:200%;height:100%;
+background:url('https://i.ibb.co/7QpKsCX/fog.png');
+opacity:.12;z-index:-4;
+animation:fogMove 60s linear infinite;
+}
+@keyframes fogMove{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+#forest3d{
+position:fixed;inset:0;width:100%;height:100%;z-index:-10;
+}
+
+body::after{
+content:'';position:fixed;inset:0;
+background:radial-gradient(circle at center,rgba(255,255,255,.05),rgba(0,0,0,.45));
+z-index:-1;
+pointer-events:none;
+}
+
+.particle{position:fixed;background:white;border-radius:50%;opacity:.4;animation:float linear infinite;z-index:-3;}
+@keyframes float{from{transform:translateY(110vh);opacity:0;}to{transform:translateY(-20vh);opacity:.6;}}
+
+.opening{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;}
+.card{max-width:800px;width:100%;padding:55px 30px;border-radius:35px;background:rgba(255,255,255,.08);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.1);}
+.small{letter-spacing:5px;color:#d6c28a;font-size:13px;margin-bottom:20px;}
+h1{font-family:'Cinzel',serif;font-size:68px;}
+.and{font-size:30px;color:#d6c28a;}
+.quote{margin-top:25px;line-height:1.9;}
+.sunda{margin-top:18px;color:#d6c28a;}
+.date{margin-top:30px;font-size:22px;font-weight:600;}
+.guest{margin-top:25px;padding:18px;background:rgba(255,255,255,.05);border-radius:20px;}
+.btn{display:inline-block;margin-top:35px;padding:16px 38px;border-radius:50px;background:#d6c28a;color:#111;font-weight:600;}
+
+.container{max-width:1100px;margin:auto;padding:100px 20px;}
+.box{background:rgba(255,255,255,.07);padding:45px;border-radius:30px;}
+.title{text-align:center;font-size:42px;color:#d6c28a;font-family:'Cinzel',serif;}
+.text{text-align:center;line-height:2;}
+
+.countdown{display:flex;gap:15px;justify-content:center;margin-top:35px;flex-wrap:wrap;}
+.time{width:100px;padding:20px;background:rgba(255,255,255,.08);border-radius:20px;text-align:center;}
+.time h2{color:#d6c28a;}
+
+.music-btn{position:fixed;bottom:20px;right:20px;width:60px;height:60px;border-radius:50%;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:99;}
+
+</style>
+</head>
+<body>
+
+<div class="bg"></div>
+<div class="fog"></div>
+<canvas id="forest3d"></canvas>
+
+<section class="opening">
+<div class="card">
+<div class="small">THE WEDDING OF</div>
+<h1>Eep Rifaldy<br><div class="and">&</div>Melly</h1>
+
+<p class="quote">“Cinta yang tumbuh dalam kesederhanaan akan abadi.”</p>
+<p class="sunda">“Dua hate ngahiji dina kahirupan salamina.”</p>
+
+<div class="date">31 Mei 2026</div>
+
+<div class="guest" id="guest">Kepada Yth.<br>Tamu Undangan</div>
+
+<button class="btn" onclick="openGate()">🌿 Buka Undangan 🌿</button>
 </div>
 </section>
 
 <section>
 <div class="container">
 <div class="box">
+<h2 class="title">Save The Date</h2>
+<p class="text">Dengan penuh rasa syukur kami mengundang Anda.</p>
 
-<h2 class="title">Love Story</h2>
-
-<div class="timeline">
-
-<div class="story">
-<div class="story-box">
-<h4>Awal Bertemu</h4>
-<p>Kisah ini dimulai dari pertemuan sederhana yang akhirnya tumbuh menjadi cinta luar biasa.</p>
+<div class="countdown">
+<div class="time"><h2 id="days">0</h2><p>Hari</p></div>
+<div class="time"><h2 id="hours">0</h2><p>Jam</p></div>
+<div class="time"><h2 id="minutes">0</h2><p>Menit</p></div>
+<div class="time"><h2 id="seconds">0</h2><p>Detik</p></div>
 </div>
-</div>
-
-<div class="story">
-<div class="story-box">
-<h4>Menjalin Hubungan</h4>
-<p>Bersama melewati suka dan duka hingga semakin yakin untuk melangkah bersama.</p>
-</div>
-</div>
-
-<div class="story">
-<div class="story-box">
-<h4>Lamaran</h4>
-<p>Dengan restu keluarga, kami memutuskan untuk melanjutkan kisah ini ke jenjang pernikahan.</p>
-</div>
-</div>
-
-<div class="story">
-<div class="story-box">
-<h4>Hari Bahagia</h4>
-<p>30 Mei 2026 menjadi awal perjalanan baru kami sebagai pasangan suami istri.</p>
-</div>
-</div>
-
-</div>
-
 </div>
 </div>
 </section>
 
-<section>
-<div class="container">
-<div class="box">
+<audio id="music" loop>
+<source src="musik.mp3" type="audio/mp3">
+</audio>
 
-<h2 class="title">Gallery</h2>
+<div class="music-btn" onclick="toggleMusic()">🎵</div>
 
-<div class="gallery">
-<img src="https://images.unsp
+<script>
+
+const urlParams=new URLSearchParams(window.location.search);
+const guest=urlParams.get('to');
+if(guest){document.getElementById('guest').innerHTML='Kepada Yth.<br><b>'+guest+'</b>';}
+
+const music=document.getElementById('music');
+
+function toggleMusic(){music.paused?music.play():music.pause();}
+
+function openGate(){music.play();document.querySelector('.opening').style.opacity='0';setTimeout(()=>{document.querySelector('.opening').style.display='none';},1200);}
+
+const target=new Date('May 31, 2026 08:00:00').getTime();
+setInterval(()=>{
+let now=new Date().getTime();
+let d=target-now;
+
+document.getElementById('days').innerText=Math.floor(d/(1000*60*60*24));
+document.getElementById('hours').innerText=Math.floor((d%(1000*60*60*24))/(1000*60*60));
+document.getElementById('minutes').innerText=Math.floor((d%(1000*60*60))/(1000*60));
+document.getElementById('seconds').innerText=Math.floor((d%(1000*60))/1000);
+},1000);
+
+</script>
+
+</body>
+</html>
+```
