@@ -197,6 +197,7 @@ padding:25px;
 <button class="open-btn" onclick="playMusic()">
 Buka Undangan
 </button>
+<p id="guest" style="margin-top:20px;font-size:18px;"></p>
 </div>
 
 </section>
@@ -293,7 +294,16 @@ apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu.
 <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8e2b1f4.mp3?filename=wedding-110624.mp3" type="audio/mpeg">
 </audio>
 
-<script>
+const urlParams = new URLSearchParams(window.location.search);
+
+const guestName = urlParams.get('to');
+
+if(guestName){
+
+document.getElementById("guest").innerHTML =
+"Kepada Yth. <br><b>" + guestName + "</b>";
+
+}<script>
 
 function playMusic(){
 document.getElementById("music").play();
