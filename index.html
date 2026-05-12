@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Undangan Pernikahan</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body{
+      background:#0f0f0f;
+      color:white;
+      overflow-x:hidden;
+    }
+
+    .hero{
+      height:100vh;
+      background:linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.6)),
+      url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop');
+      background-size:cover;
+      background-position:center;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:20px;
+    }
+
+    .hero-content{
+      animation:fadeIn 2s ease;
+    }
+
+    .hero h1{
+      font-size:55px;
+      margin-bottom:10px;
+    }
+
+    .hero p{
+      font-size:20px;
+      opacity:.9;
+    }
+
+    .section{
+      padding:80px 20px;
+      text-align:center;
+    }
+
+    .card{
+      max-width:700px;
+      margin:auto;
+      background:#1b1b1b;
+      padding:40px;
+      border-radius:20px;
+      box-shadow:0 0 20px rgba(255,255,255,.05);
+    }
+
+    h2{
+      font-size:38px;
+      margin-bottom:20px;
+      color:#f5d38d;
+    }
+
+    .nama{
+      font-size:45px;
+      margin:20px 0;
+      font-weight:bold;
+    }
+
+    .detail{
+      margin-top:20px;
+      line-height:1.8;
+      font-size:18px;
+    }
+
+    .btn{
+      display:inline-block;
+      margin-top:30px;
+      padding:15px 35px;
+      background:#f5d38d;
+      color:black;
+      text-decoration:none;
+      border-radius:50px;
+      font-weight:bold;
+      transition:.3s;
+    }
+
+    .btn:hover{
+      transform:scale(1.05);
+    }
+
+    footer{
+      padding:40px 20px;
+      text-align:center;
+      background:#111;
+      font-size:14px;
+      opacity:.7;
+    }
+
+    @keyframes fadeIn{
+      from{
+        opacity:0;
+        transform:translateY(20px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    @media(max-width:600px){
+
+      .hero h1{
+        font-size:38px;
+      }
+
+      .nama{
+        font-size:32px;
+      }
+
+      h2{
+        font-size:28px;
+      }
+
+      .card{
+        padding:25px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="hero">
+    <div class="hero-content">
+      <p>The Wedding Of</p>
+      <h1>Imron & Istri</h1>
+      <p>12 Desember 2026</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="card">
+      <h2>Assalamu’alaikum Wr. Wb.</h2>
+
+      <p>
+        Dengan memohon rahmat dan ridho Allah SWT,
+        kami bermaksud menyelenggarakan acara pernikahan:
+      </p>
+
+      <div class="nama">
+        Imron Sugawa
+      </div>
+
+      <p>dengan</p>
+
+      <div class="nama">
+        Nama Pasangan
+      </div>
+
+      <div class="detail">
+        <p><b>Hari/Tanggal:</b> Minggu, 12 Desember 2026</p>
+        <p><b>Jam:</b> 09.00 WIB - Selesai</p>
+        <p><b>Lokasi:</b> Kediaman Mempelai</p>
+      </div>
+
+      <a class="btn" href="#">
+        Konfirmasi Kehadiran
+      </a>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="card">
+      <h2>Ucapan & Doa</h2>
+
+      <p>
+        Merupakan suatu kehormatan dan kebahagiaan bagi kami
+        apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu.
+      </p>
+
+      <br><br>
+
+      <p>
+        Terima kasih.
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    © 2026 Wedding Invitation - Imron Sugawa
+  </footer>
+
+</body>
+</html>
