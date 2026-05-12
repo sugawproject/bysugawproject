@@ -7,7 +7,7 @@
 <title>Wedding Invitation</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Great+Vibes&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
 
 <style>
 
@@ -15,6 +15,7 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
+scroll-behavior:smooth;
 }
 
 body{
@@ -24,45 +25,74 @@ color:white;
 overflow-x:hidden;
 }
 
+body::-webkit-scrollbar{
+width:0;
+}
+
 .hero{
 height:100vh;
 background:
-linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
+linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.65)),
 url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=1400&auto=format&fit=crop');
 background-size:cover;
 background-position:center;
 display:flex;
-align-items:center;
 justify-content:center;
+align-items:center;
 text-align:center;
 padding:20px;
 position:relative;
 }
 
+.overlay{
+position:absolute;
+inset:0;
+backdrop-filter:blur(2px);
+}
+
 .hero-content{
+position:relative;
+z-index:2;
 animation:fadeUp 1.5s ease;
 }
 
-.hero h1{
-font-size:70px;
-font-family:'Great Vibes',cursive;
-margin:10px 0;
-color:#f5d38d;
+.hero p{
+font-size:18px;
+letter-spacing:2px;
 }
 
-.hero p{
-font-size:20px;
+.hero h1{
+font-size:75px;
+font-family:'Great Vibes',cursive;
+color:#f5d38d;
+margin:15px 0;
+}
+
+.hero-date{
+font-size:22px;
+margin-top:10px;
 }
 
 .open-btn{
-margin-top:30px;
-padding:15px 35px;
+margin-top:35px;
+padding:16px 38px;
 border:none;
 border-radius:50px;
 background:#f5d38d;
-font-size:16px;
 font-weight:bold;
+font-size:16px;
 cursor:pointer;
+transition:.3s;
+}
+
+.open-btn:hover{
+transform:scale(1.05);
+}
+
+#guest{
+margin-top:25px;
+font-size:18px;
+line-height:1.7;
 }
 
 .section{
@@ -71,70 +101,135 @@ text-align:center;
 }
 
 .card{
-max-width:750px;
+max-width:800px;
 margin:auto;
-background:#1b1b1b;
-padding:40px;
-border-radius:25px;
-box-shadow:0 0 30px rgba(255,255,255,.05);
+background:rgba(255,255,255,.04);
+border:1px solid rgba(255,255,255,.08);
+backdrop-filter:blur(10px);
+padding:45px;
+border-radius:30px;
+box-shadow:0 0 40px rgba(0,0,0,.4);
 }
 
-h2{
-font-size:40px;
-margin-bottom:20px;
+.title{
+font-size:45px;
+margin-bottom:25px;
+font-family:'Great Vibes',cursive;
 color:#f5d38d;
 }
 
 .nama{
-font-size:45px;
+font-size:50px;
 font-family:'Great Vibes',cursive;
-margin:15px 0;
+margin:20px 0;
+color:#f5d38d;
 }
 
 .detail{
-margin-top:20px;
 line-height:2;
 font-size:18px;
+margin-top:20px;
 }
 
 .countdown{
 display:flex;
 justify-content:center;
 gap:15px;
-margin-top:30px;
 flex-wrap:wrap;
+margin-top:35px;
 }
 
 .box{
-background:#222;
+background:#181818;
 padding:20px;
-border-radius:15px;
-min-width:90px;
+border-radius:20px;
+min-width:95px;
+border:1px solid rgba(255,255,255,.05);
 }
 
-.box h3{
-font-size:32px;
+.box h2{
+font-size:34px;
 color:#f5d38d;
+}
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:15px;
+margin-top:40px;
+}
+
+.gallery img{
+width:100%;
+height:280px;
+object-fit:cover;
+border-radius:20px;
+transition:.4s;
+}
+
+.gallery img:hover{
+transform:scale(1.03);
+}
+
+.button-group{
+margin-top:35px;
 }
 
 .btn{
 display:inline-block;
-margin-top:20px;
-padding:15px 30px;
+padding:15px 28px;
+margin:8px;
 border-radius:50px;
 background:#f5d38d;
 color:black;
-text-decoration:none;
 font-weight:bold;
-margin-right:10px;
+text-decoration:none;
+transition:.3s;
+}
+
+.btn:hover{
+transform:translateY(-3px);
+}
+
+.rsvp-box{
+margin-top:30px;
+}
+
+.rsvp-box input,
+.rsvp-box textarea{
+width:100%;
+padding:16px;
+margin-top:15px;
+border:none;
+border-radius:15px;
+background:#181818;
+color:white;
+font-size:15px;
+}
+
+.rsvp-box textarea{
+height:120px;
+resize:none;
+}
+
+.send-btn{
+margin-top:20px;
+width:100%;
+padding:16px;
+border:none;
+border-radius:15px;
+background:#f5d38d;
+font-weight:bold;
+cursor:pointer;
 }
 
 footer{
-padding:40px;
+padding:45px 20px;
 text-align:center;
-background:#111;
 font-size:14px;
 opacity:.7;
+background:#111;
+margin-top:50px;
 }
 
 .flower{
@@ -142,13 +237,22 @@ position:fixed;
 top:-10px;
 font-size:20px;
 animation:fall linear infinite;
+pointer-events:none;
 z-index:999;
 }
 
-@keyframes fall{
-to{
-transform:translateY(110vh);
-}
+.music-btn{
+position:fixed;
+bottom:20px;
+right:20px;
+width:60px;
+height:60px;
+border-radius:50%;
+border:none;
+background:#f5d38d;
+font-size:22px;
+cursor:pointer;
+z-index:9999;
 }
 
 @keyframes fadeUp{
@@ -162,22 +266,28 @@ transform:translateY(0);
 }
 }
 
+@keyframes fall{
+to{
+transform:translateY(110vh);
+}
+}
+
 @media(max-width:600px){
 
 .hero h1{
-font-size:50px;
+font-size:55px;
 }
 
 .nama{
+font-size:38px;
+}
+
+.title{
 font-size:35px;
 }
 
-h2{
-font-size:30px;
-}
-
 .card{
-padding:25px;
+padding:28px;
 }
 
 }
@@ -189,15 +299,24 @@ padding:25px;
 
 <section class="hero">
 
-<div class="hero-content">
-<p>The Wedding Of</p>
-<h1>Imron & Salsabila</h1>
-<p>12 Desember 2026</p>
+<div class="overlay"></div>
 
-<button class="open-btn" onclick="playMusic()">
+<div class="hero-content">
+
+<p>THE WEDDING OF</p>
+
+<h1>Imron & Salsabila</h1>
+
+<div class="hero-date">
+12 Desember 2026
+</div>
+
+<p id="guest"></p>
+
+<button class="open-btn" onclick="openInvitation()">
 Buka Undangan
 </button>
-<p id="guest" style="margin-top:20px;font-size:18px;"></p>
+
 </div>
 
 </section>
@@ -206,7 +325,9 @@ Buka Undangan
 
 <div class="card">
 
-<h2>Assalamu'alaikum Wr. Wb.</h2>
+<div class="title">
+Assalamu'alaikum Wr. Wb.
+</div>
 
 <p>
 Dengan memohon rahmat dan ridho Allah SWT,
@@ -218,50 +339,58 @@ untuk hadir dalam acara pernikahan kami.
 Imron Sugawa
 </div>
 
-<p>dengan</p>
+<p>Putra dari Bapak Lorem & Ibu Ipsum</p>
 
 <div class="nama">
 Salsabila
 </div>
 
+<p>Putri dari Bapak Lorem & Ibu Ipsum</p>
+
 <div class="detail">
+
 <p><b>Hari:</b> Minggu</p>
 <p><b>Tanggal:</b> 12 Desember 2026</p>
-<p><b>Jam:</b> 09.00 WIB - Selesai</p>
+<p><b>Pukul:</b> 09.00 WIB - Selesai</p>
 <p><b>Lokasi:</b> Kediaman Mempelai</p>
+
 </div>
 
 <div class="countdown">
 
 <div class="box">
-<h3 id="days">0</h3>
+<h2 id="days">0</h2>
 <p>Hari</p>
 </div>
 
 <div class="box">
-<h3 id="hours">0</h3>
+<h2 id="hours">0</h2>
 <p>Jam</p>
 </div>
 
 <div class="box">
-<h3 id="minutes">0</h3>
+<h2 id="minutes">0</h2>
 <p>Menit</p>
 </div>
 
 <div class="box">
-<h3 id="seconds">0</h3>
+<h2 id="seconds">0</h2>
 <p>Detik</p>
 </div>
 
 </div>
 
-<a class="btn" href="https://wa.me/6281234567890">
-WhatsApp
-</a>
+<div class="button-group">
 
 <a class="btn" href="https://maps.google.com">
-Lokasi
+📍 Google Maps
 </a>
+
+<a class="btn" href="https://wa.me/6281234567890">
+💬 WhatsApp
+</a>
+
+</div>
 
 </div>
 
@@ -271,47 +400,93 @@ Lokasi
 
 <div class="card">
 
-<h2>Ucapan & Doa</h2>
+<div class="title">
+Galeri Kami
+</div>
+
+<div class="gallery">
+
+<img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=1200&auto=format&fit=crop">
+
+<img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=1200&auto=format&fit=crop">
+
+<img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=1200&auto=format&fit=crop">
+
+<img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop">
+
+</div>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<div class="card">
+
+<div class="title">
+RSVP & Ucapan
+</div>
 
 <p>
-Merupakan suatu kehormatan dan kebahagiaan bagi kami
-apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu.
+Berikan doa dan ucapan terbaik untuk kami
 </p>
 
-<br><br>
+<div class="rsvp-box">
 
-<p>Terima kasih.</p>
+<input type="text" placeholder="Nama Anda">
+
+<textarea placeholder="Tulis ucapan dan doa..."></textarea>
+
+<button class="send-btn">
+Kirim Ucapan
+</button>
+
+</div>
 
 </div>
 
 </section>
 
 <footer>
-© 2026 Wedding Invitation - Imron Sugawa
+© 2026 Wedding Invitation • Imron Sugawa
 </footer>
+
+<button class="music-btn" onclick="toggleMusic()">
+🎵
+</button>
 
 <audio id="music" loop>
 <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8e2b1f4.mp3?filename=wedding-110624.mp3" type="audio/mpeg">
 </audio>
 
-const urlParams = new URLSearchParams(window.location.search);
+<script>
 
-const guestName = urlParams.get('to');
+const music = document.getElementById("music");
 
-if(guestName){
+function openInvitation(){
 
-document.getElementById("guest").innerHTML =
-"Kepada Yth. <br><b>" + guestName + "</b>";
-
-}<script>
-
-function playMusic(){
-document.getElementById("music").play();
+music.play();
 
 window.scrollTo({
 top:window.innerHeight,
 behavior:"smooth"
 });
+
+}
+
+function toggleMusic(){
+
+if(music.paused){
+
+music.play();
+
+}else{
+
+music.pause();
+
+}
+
 }
 
 const targetDate = new Date("Dec 12, 2026 09:00:00").getTime();
@@ -322,22 +497,32 @@ const now = new Date().getTime();
 
 const distance = targetDate - now;
 
-const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+document.getElementById("days").innerHTML =
+Math.floor(distance / (1000 * 60 * 60 * 24));
 
-const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+document.getElementById("hours").innerHTML =
+Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
 
-const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+document.getElementById("minutes").innerHTML =
+Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
 
-const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-document.getElementById("days").innerHTML = days;
-document.getElementById("hours").innerHTML = hours;
-document.getElementById("minutes").innerHTML = minutes;
-document.getElementById("seconds").innerHTML = seconds;
+document.getElementById("seconds").innerHTML =
+Math.floor((distance % (1000 * 60)) / 1000);
 
 },1000);
 
-for(let i=0;i<20;i++){
+const urlParams = new URLSearchParams(window.location.search);
+
+const guestName = urlParams.get('to');
+
+if(guestName){
+
+document.getElementById("guest").innerHTML =
+"Kepada Yth.<br><b>" + guestName + "</b>";
+
+}
+
+for(let i=0;i<25;i++){
 
 let flower=document.createElement("div");
 
