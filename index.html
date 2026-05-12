@@ -1,186 +1,123 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Eep Rifaldy & Melly Wedding</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Undangan Pernikahan</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Georgia', serif;
+      background: #f7f3ef;
+      color: #333;
+      text-align: center;
+    }
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
+    .hero {
+      height: 100vh;
+      background: url('https://images.unsplash.com/photo-1529634806980-85c3dd6d34ac') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      flex-direction: column;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+    }
 
-<style>
-*{margin:0;padding:0;box-sizing:border-box;}
-body{overflow:hidden;background:#050a07;color:#fff;font-family:'Poppins';}
-canvas{position:fixed;inset:0;}
+    .hero h1 {
+      font-size: 42px;
+      margin: 0;
+    }
 
-#loading{
-position:fixed;inset:0;background:#000;display:flex;align-items:center;justify-content:center;flex-direction:column;z-index:999;
-}
-#loading h1{font-family:'Cinzel';letter-spacing:4px;}
-.bar{width:200px;height:2px;background:#333;margin-top:20px;overflow:hidden;}
-.bar span{display:block;height:100%;width:0;background:#d6c28a;animation:load 2s forwards;}
-@keyframes load{to{width:100%;}}
+    .hero p {
+      font-size: 18px;
+      margin-top: 10px;
+    }
 
-#ui{
-position:fixed;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;z-index:10;
-}
-.card{
-max-width:700px;padding:40px;background:rgba(255,255,255,.06);
-backdrop-filter:blur(10px);border-radius:25px;
-opacity:0;transform:translateY(40px);
-}
-h1{font-family:'Cinzel';font-size:56px;}
-.sub{color:#d6c28a;margin:10px 0;}
-.btn{margin-top:20px;padding:12px 28px;border:none;border-radius:30px;background:#d6c28a;font-weight:bold;cursor:pointer;pointer-events:auto;}
+    .section {
+      padding: 60px 20px;
+    }
 
-#musicBtn{
-position:fixed;bottom:20px;right:20px;width:60px;height:60px;border-radius:50%;border:none;background:#ffffff22;color:#fff;font-size:18px;z-index:20;
-}
-</style>
+    .names {
+      font-size: 32px;
+      font-weight: bold;
+    }
+
+    .date {
+      font-size: 20px;
+      margin-top: 10px;
+    }
+
+    .box {
+      background: white;
+      padding: 30px;
+      margin: 20px auto;
+      max-width: 500px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #8b5e3c;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+    }
+
+    iframe {
+      width: 100%;
+      height: 250px;
+      border: none;
+      border-radius: 10px;
+    }
+  </style>
 </head>
+
 <body>
 
-<div id="loading">
-<h1>LOADING FOREST</h1>
-<div class="bar"><span></span></div>
-</div>
+  <!-- HERO -->
+  <div class="hero">
+    <h1>Undangan Pernikahan</h1>
+    <p>Kami mengundang Anda untuk hadir di hari bahagia kami</p>
+  </div>
 
-<div id="ui">
-<div class="card">
-<div class="sub">THE WEDDING OF</div>
-<h1>Eep & Melly</h1>
-<p class="sub">31 Mei 2026 • 08.00 WIB</p>
-<p id="guest">Tamu Undangan</p>
-<button class="btn" onclick="openGate()">ENTER FOREST</button>
-</div>
-</div>
+  <!-- NAMA -->
+  <div class="section">
+    <div class="box">
+      <div class="names">Eep Rifaldy & Melly</div>
+      <div class="date">30 Mei 2026</div>
+      <p>Dengan segala kerendahan hati, kami mengundang Anda untuk hadir di acara pernikahan kami.</p>
+    </div>
+  </div>
 
-<button id="musicBtn" onclick="toggleMusic()">♫</button>
+  <!-- COUNTDOWN SIMPLE -->
+  <div class="section">
+    <div class="box">
+      <h3>Acara Dimulai</h3>
+      <p>30 Mei 2026</p>
+    </div>
+  </div>
 
-<audio id="music" loop>
-<source src="musik.mp3" type="audio/mp3">
-</audio>
+  <!-- LOKASI -->
+  <div class="section">
+    <div class="box">
+      <h3>Lokasi Acara</h3>
+      <iframe src="https://www.google.com/maps?q=Bandung&output=embed"></iframe>
+      <a class="btn" href="https://maps.google.com" target="_blank">Buka Maps</a>
+    </div>
+  </div>
 
-<script>
-
-/* =====================
-   THREE JS OPTIMIZED
-===================== */
-
-const scene = new THREE.Scene();
-scene.fog = new THREE.FogExp2(0x050a07, 0.05);
-
-const camera = new THREE.PerspectiveCamera(60, innerWidth/innerHeight, 0.1, 1000);
-camera.position.set(0,2,10);
-
-const renderer = new THREE.WebGLRenderer({antialias:true, powerPreference:"high-performance"});
-renderer.setSize(innerWidth, innerHeight);
-document.body.appendChild(renderer.domElement);
-
-/* LIGHT SIMPLE (FAST MOBILE) */
-const light = new THREE.DirectionalLight(0xffe6b3, 1.2);
-light.position.set(5,10,5);
-scene.add(light);
-scene.add(new THREE.AmbientLight(0x223322, 0.6));
-
-/* GROUND */
-const ground = new THREE.Mesh(
-new THREE.PlaneGeometry(100,100),
-new THREE.MeshStandardMaterial({color:0x0b1a10})
-);
-ground.rotation.x = -Math.PI/2;
-scene.add(ground);
-
-/* SIMPLE TREES (OPTIMIZED) */
-for(let i=0;i<40;i++){
-const tree = new THREE.Mesh(
-new THREE.CylinderGeometry(.15,.4,3,6),
-new THREE.MeshStandardMaterial({color:0x1f2d1f})
-);
-tree.position.set((Math.random()-0.5)*40,1.5,-Math.random()*40);
-scene.add(tree);
-}
-
-/* FLOATING PARTICLES LIGHT */
-const particles=[];
-for(let i=0;i<80;i++){
-const p = new THREE.Mesh(
-new THREE.SphereGeometry(.03,6,6),
-new THREE.MeshBasicMaterial({color:0xffffff})
-);
-p.position.set((Math.random()-0.5)*20,Math.random()*10,-Math.random()*20);
-scene.add(p);
-particles.push(p);
-}
-
-/* GATE SIMPLE */
-const gateMat = new THREE.MeshStandardMaterial({color:0x2b1d12});
-const gateL = new THREE.Mesh(new THREE.BoxGeometry(2,4,0.2), gateMat);
-const gateR = gateL.clone();
-gateL.position.set(-1,2,-3);
-gateR.position.set(1,2,-3);
-scene.add(gateL);scene.add(gateR);
-
-/* NAME */
-const url = new URLSearchParams(location.search);
-if(url.get('to')) document.getElementById('guest').innerHTML = url.get('to');
-
-/* MUSIC */
-const music = document.getElementById('music');
-function toggleMusic(){music.play();}
-
-/* OPEN GATE */
-function openGate(){
-
-music.play();
-
-gsap.to(gateL.position,{x:-5,duration:1.8});
-gsap.to(gateR.position,{x:5,duration:1.8});
-
-gsap.to(camera.position,{z:4,y:1.5,duration:2.5});
-
-gsap.to(".card",{opacity:0,y:-30,duration:1});
-setTimeout(()=>document.getElementById('ui').style.display='none',1200);
-}
-
-/* ANIMATE */
-function animate(){
-requestAnimationFrame(animate);
-
-particles.forEach(p=>{
-p.position.y -= 0.02;
-if(p.position.y < -5) p.position.y = 10;
-});
-
-camera.position.x += (mouseX - camera.position.x)*0.02;
-renderer.render(scene,camera);
-}
-
-let mouseX = 0;
-window.addEventListener('mousemove',e=>{
-mouseX = (e.clientX/window.innerWidth - 0.5)*2;
-});
-
-animate();
-
-/* RESIZE */
-window.addEventListener('resize',()=>{
-camera.aspect = innerWidth/innerHeight;
-camera.updateProjectionMatrix();
-renderer.setSize(innerWidth,innerHeight);
-});
-
-/* LOADING FIX */
-window.addEventListener('load',()=>{
-setTimeout(()=>{
-document.getElementById('loading').style.display='none';
-gsap.to('.card',{opacity:1,y:0,duration:1.5});
-},1200);
-});
-
-</script>
+  <!-- RSVP -->
+  <div class="section">
+    <div class="box">
+      <h3>Konfirmasi Kehadiran</h3>
+      <a class="btn" href="#">RSVP Sekarang</a>
+    </div>
+  </div>
 
 </body>
 </html>
