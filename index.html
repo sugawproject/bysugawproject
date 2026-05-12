@@ -1,199 +1,353 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Undangan Pernikahan</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      font-family: 'Segoe UI', sans-serif;
-    }
+<title>Wedding Invitation</title>
 
-    body{
-      background:#0f0f0f;
-      color:white;
-      overflow-x:hidden;
-    }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Great+Vibes&display=swap" rel="stylesheet">
 
-    .hero{
-      height:100vh;
-      background:linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.6)),
-      url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop');
-      background-size:cover;
-      background-position:center;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      padding:20px;
-    }
+<style>
 
-    .hero-content{
-      animation:fadeIn 2s ease;
-    }
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
 
-    .hero h1{
-      font-size:55px;
-      margin-bottom:10px;
-    }
+body{
+font-family:'Poppins',sans-serif;
+background:#0f0f0f;
+color:white;
+overflow-x:hidden;
+}
 
-    .hero p{
-      font-size:20px;
-      opacity:.9;
-    }
+.hero{
+height:100vh;
+background:
+linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
+url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=1400&auto=format&fit=crop');
+background-size:cover;
+background-position:center;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+padding:20px;
+position:relative;
+}
 
-    .section{
-      padding:80px 20px;
-      text-align:center;
-    }
+.hero-content{
+animation:fadeUp 1.5s ease;
+}
 
-    .card{
-      max-width:700px;
-      margin:auto;
-      background:#1b1b1b;
-      padding:40px;
-      border-radius:20px;
-      box-shadow:0 0 20px rgba(255,255,255,.05);
-    }
+.hero h1{
+font-size:70px;
+font-family:'Great Vibes',cursive;
+margin:10px 0;
+color:#f5d38d;
+}
 
-    h2{
-      font-size:38px;
-      margin-bottom:20px;
-      color:#f5d38d;
-    }
+.hero p{
+font-size:20px;
+}
 
-    .nama{
-      font-size:45px;
-      margin:20px 0;
-      font-weight:bold;
-    }
+.open-btn{
+margin-top:30px;
+padding:15px 35px;
+border:none;
+border-radius:50px;
+background:#f5d38d;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+}
 
-    .detail{
-      margin-top:20px;
-      line-height:1.8;
-      font-size:18px;
-    }
+.section{
+padding:90px 20px;
+text-align:center;
+}
 
-    .btn{
-      display:inline-block;
-      margin-top:30px;
-      padding:15px 35px;
-      background:#f5d38d;
-      color:black;
-      text-decoration:none;
-      border-radius:50px;
-      font-weight:bold;
-      transition:.3s;
-    }
+.card{
+max-width:750px;
+margin:auto;
+background:#1b1b1b;
+padding:40px;
+border-radius:25px;
+box-shadow:0 0 30px rgba(255,255,255,.05);
+}
 
-    .btn:hover{
-      transform:scale(1.05);
-    }
+h2{
+font-size:40px;
+margin-bottom:20px;
+color:#f5d38d;
+}
 
-    footer{
-      padding:40px 20px;
-      text-align:center;
-      background:#111;
-      font-size:14px;
-      opacity:.7;
-    }
+.nama{
+font-size:45px;
+font-family:'Great Vibes',cursive;
+margin:15px 0;
+}
 
-    @keyframes fadeIn{
-      from{
-        opacity:0;
-        transform:translateY(20px);
-      }
-      to{
-        opacity:1;
-        transform:translateY(0);
-      }
-    }
+.detail{
+margin-top:20px;
+line-height:2;
+font-size:18px;
+}
 
-    @media(max-width:600px){
+.countdown{
+display:flex;
+justify-content:center;
+gap:15px;
+margin-top:30px;
+flex-wrap:wrap;
+}
 
-      .hero h1{
-        font-size:38px;
-      }
+.box{
+background:#222;
+padding:20px;
+border-radius:15px;
+min-width:90px;
+}
 
-      .nama{
-        font-size:32px;
-      }
+.box h3{
+font-size:32px;
+color:#f5d38d;
+}
 
-      h2{
-        font-size:28px;
-      }
+.btn{
+display:inline-block;
+margin-top:20px;
+padding:15px 30px;
+border-radius:50px;
+background:#f5d38d;
+color:black;
+text-decoration:none;
+font-weight:bold;
+margin-right:10px;
+}
 
-      .card{
-        padding:25px;
-      }
-    }
-  </style>
+footer{
+padding:40px;
+text-align:center;
+background:#111;
+font-size:14px;
+opacity:.7;
+}
+
+.flower{
+position:fixed;
+top:-10px;
+font-size:20px;
+animation:fall linear infinite;
+z-index:999;
+}
+
+@keyframes fall{
+to{
+transform:translateY(110vh);
+}
+}
+
+@keyframes fadeUp{
+from{
+opacity:0;
+transform:translateY(40px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+@media(max-width:600px){
+
+.hero h1{
+font-size:50px;
+}
+
+.nama{
+font-size:35px;
+}
+
+h2{
+font-size:30px;
+}
+
+.card{
+padding:25px;
+}
+
+}
+
+</style>
 </head>
+
 <body>
 
-  <section class="hero">
-    <div class="hero-content">
-      <p>The Wedding Of</p>
-      <h1>Imron & Istri</h1>
-      <p>12 Desember 2026</p>
-    </div>
-  </section>
+<section class="hero">
 
-  <section class="section">
-    <div class="card">
-      <h2>Assalamu’alaikum Wr. Wb.</h2>
+<div class="hero-content">
+<p>The Wedding Of</p>
+<h1>Imron & Salsabila</h1>
+<p>12 Desember 2026</p>
 
-      <p>
-        Dengan memohon rahmat dan ridho Allah SWT,
-        kami bermaksud menyelenggarakan acara pernikahan:
-      </p>
+<button class="open-btn" onclick="playMusic()">
+Buka Undangan
+</button>
+</div>
 
-      <div class="nama">
-        Imron Sugawa
-      </div>
+</section>
 
-      <p>dengan</p>
+<section class="section">
 
-      <div class="nama">
-        Nama Pasangan
-      </div>
+<div class="card">
 
-      <div class="detail">
-        <p><b>Hari/Tanggal:</b> Minggu, 12 Desember 2026</p>
-        <p><b>Jam:</b> 09.00 WIB - Selesai</p>
-        <p><b>Lokasi:</b> Kediaman Mempelai</p>
-      </div>
+<h2>Assalamu'alaikum Wr. Wb.</h2>
 
-      <a class="btn" href="#">
-        Konfirmasi Kehadiran
-      </a>
-    </div>
-  </section>
+<p>
+Dengan memohon rahmat dan ridho Allah SWT,
+kami mengundang Bapak/Ibu/Saudara/i
+untuk hadir dalam acara pernikahan kami.
+</p>
 
-  <section class="section">
-    <div class="card">
-      <h2>Ucapan & Doa</h2>
+<div class="nama">
+Imron Sugawa
+</div>
 
-      <p>
-        Merupakan suatu kehormatan dan kebahagiaan bagi kami
-        apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu.
-      </p>
+<p>dengan</p>
 
-      <br><br>
+<div class="nama">
+Salsabila
+</div>
 
-      <p>
-        Terima kasih.
-      </p>
-    </div>
-  </section>
+<div class="detail">
+<p><b>Hari:</b> Minggu</p>
+<p><b>Tanggal:</b> 12 Desember 2026</p>
+<p><b>Jam:</b> 09.00 WIB - Selesai</p>
+<p><b>Lokasi:</b> Kediaman Mempelai</p>
+</div>
 
-  <footer>
-    © 2026 Wedding Invitation - Imron Sugawa
-  </footer>
+<div class="countdown">
+
+<div class="box">
+<h3 id="days">0</h3>
+<p>Hari</p>
+</div>
+
+<div class="box">
+<h3 id="hours">0</h3>
+<p>Jam</p>
+</div>
+
+<div class="box">
+<h3 id="minutes">0</h3>
+<p>Menit</p>
+</div>
+
+<div class="box">
+<h3 id="seconds">0</h3>
+<p>Detik</p>
+</div>
+
+</div>
+
+<a class="btn" href="https://wa.me/6281234567890">
+WhatsApp
+</a>
+
+<a class="btn" href="https://maps.google.com">
+Lokasi
+</a>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<div class="card">
+
+<h2>Ucapan & Doa</h2>
+
+<p>
+Merupakan suatu kehormatan dan kebahagiaan bagi kami
+apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu.
+</p>
+
+<br><br>
+
+<p>Terima kasih.</p>
+
+</div>
+
+</section>
+
+<footer>
+© 2026 Wedding Invitation - Imron Sugawa
+</footer>
+
+<audio id="music" loop>
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8e2b1f4.mp3?filename=wedding-110624.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+function playMusic(){
+document.getElementById("music").play();
+
+window.scrollTo({
+top:window.innerHeight,
+behavior:"smooth"
+});
+}
+
+const targetDate = new Date("Dec 12, 2026 09:00:00").getTime();
+
+setInterval(()=>{
+
+const now = new Date().getTime();
+
+const distance = targetDate - now;
+
+const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+
+const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+
+const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+
+const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+document.getElementById("days").innerHTML = days;
+document.getElementById("hours").innerHTML = hours;
+document.getElementById("minutes").innerHTML = minutes;
+document.getElementById("seconds").innerHTML = seconds;
+
+},1000);
+
+for(let i=0;i<20;i++){
+
+let flower=document.createElement("div");
+
+flower.classList.add("flower");
+
+flower.innerHTML="🌸";
+
+flower.style.left=Math.random()*100+"vw";
+
+flower.style.animationDuration=(Math.random()*5+5)+"s";
+
+flower.style.opacity=Math.random();
+
+flower.style.fontSize=(Math.random()*20+10)+"px";
+
+document.body.appendChild(flower);
+
+}
+
+</script>
 
 </body>
 </html>
